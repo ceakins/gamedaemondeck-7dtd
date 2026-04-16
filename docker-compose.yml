@@ -1,0 +1,20 @@
+services:
+  7dtd-server:
+    build: .
+    container_name: GameDaemonDeck_7DTD
+    restart: unless-stopped
+    ports:
+      - "26900:26900/tcp"
+      - "26900:26900/udp"
+      - "26901:26901/udp"
+      - "26902:26902/udp"
+      - "8082:8080/tcp"
+    volumes:
+      - ./server-files:/home/steam/7dtd
+      - ./server-saves:/home/steam/.local/share/7DaysToDie
+    environment:
+      - TZ=America/Phoenix
+      - SERVER_NAME=!GameDaemonDeck.com! 7 Days to Die
+      - SERVER_PASSWORD=
+      - MAX_PLAYERS=8
+      - ADMIN_STEAM_ID=YOUR_STEAM_ID_HERE
